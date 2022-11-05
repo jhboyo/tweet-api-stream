@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import os
 import json
 
-#from google.oauth2 import service_account
 
 # twitter auth
 load_dotenv()
