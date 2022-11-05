@@ -1,11 +1,15 @@
 import tweepy
+from google.cloud import pubsub_v1
+from google.oauth2 import service_account
 from dotenv import load_dotenv
 import os
+import json
+
+#from google.oauth2 import service_account
 
 # twitter auth
 load_dotenv()
 bearer_token = os.getenv("BEARER_TOKEN")
-
 
 class SimpleStreamListener(tweepy.StreamingClient):
     def on_tweet(self, tweet):
@@ -21,7 +25,7 @@ class SimpleStreamListener(tweepy.StreamingClient):
 stream_listener = SimpleStreamListener(bearer_token)
 
 # add new rules
-rule = tweepy.StreamRule(value="bts")
+rule = tweepy.StreamRule(value="현우진")
 stream_listener.add_rules(rule)
 
 stream_listener.filter(expansions="author_id", tweet_fields="created_at")
